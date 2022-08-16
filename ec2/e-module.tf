@@ -2,9 +2,9 @@ module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 3.0"
 
-  name = "instance"
+  name = "jenkins1"
 
-  ami                    = "ami-07f16fb14274bfc76"
+  ami                    = "ami-0b83282d4c7adda4c"
   instance_type          = "t4g.small"
   key_name               = "hoi22"
   vpc_security_group_ids = ["sg-0bc2447cb2a6e9bc5"]
