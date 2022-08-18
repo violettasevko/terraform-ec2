@@ -2,31 +2,25 @@ module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 3.0"
 
-  name = "jenkins1"
+  name = "task1"
 
-  ami                    = "ami-0b83282d4c7adda4c"
-  instance_type          = "t4g.small"
+  ami                    = "ami-0c0fcae772c706bbe"
+  instance_type          = "t4g.micro"
+  availability_zone      = "eu-central-1a"
   key_name               = "hoi22"
   vpc_security_group_ids = ["sg-0bc2447cb2a6e9bc5"]
   subnet_id              = "subnet-07e2128167d8cbd9d"
   associate_public_ip_address = true
 
-root_block_device = [
-    {
-      encrypted   = true
-      volume_type = "gp3"
-      volume_size = 10
-    },
-  ]
-
-ebs_block_device {
-  device_name = "/dev/nvme1n1"
-  volume_type = "gp3"
-  volume_size = 2
 }
 
+resource "aws_volume_attachment" "this" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.this.id
+  instance_id = module.ec2.id
+}
 
-  tags = {
-    owner   = "violetta"
-  }
+resource "aws_ebs_volume" "this" {
+  availability_zone =  "eu-central-1a"
+  size = 1
 }
