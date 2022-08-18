@@ -15,9 +15,15 @@ root_block_device = [
     {
       encrypted   = true
       volume_type = "gp3"
-      volume_size = 8
+      volume_size = 10
     },
   ]
+
+ebs_block_device {
+  device_name = "/dev/nvme1n1"
+  volume_type = "gp3"
+  volume_size = 2
+}
 
 
   tags = {
