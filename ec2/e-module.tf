@@ -12,7 +12,9 @@ module "ec2_instance" {
   subnet_id              = "subnet-07e2128167d8cbd9d"
   associate_public_ip_address = true
   
-  root_block_device {
+}
+
+root_block_device {
     volume_size = 10
     volume_type = "gp3"
     }
@@ -37,7 +39,6 @@ resource "aws_volume_attachment" "thiss" {
 resource "aws_ebs_volume" "thiss" {
   availability_zone =  "eu-central-1a"
   size = 3
-}
 }
 
 module "security_group" {
