@@ -8,7 +8,7 @@ module "ec2_instance" {
   instance_type          = "t4g.micro"
   availability_zone      = "eu-central-1a"
   key_name               = "hoi22"
-  vpc_security_group_ids = [module.security_group.security_group_id]
+  vpc_security_group_ids = [sg-0bc2447cb2a6e9bc5]
   subnet_id              = "subnet-07e2128167d8cbd9d"
   associate_public_ip_address = true
 
@@ -37,18 +37,3 @@ resource "aws_ebs_volume" "thiss" {
   availability_zone =  "eu-central-1a"
   size = 3
 }
-
-module "security_group" {
-  source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 4.0"
-
-  name        = "myverysecgrforvpc"
-  description = "violettas security"
-  vpc_id      = "vpc-0fdbb582d143b8021"
-
-  ingress_cidr_blocks = ["0.0.0.0/0"]
-  ingress_rules       = ["http-80-tcp", "all-icmp"]
-  egress_rules        = ["all-all"]
-}
-
-
