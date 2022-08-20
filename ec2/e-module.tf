@@ -11,34 +11,25 @@ module "ec2_instance" {
   vpc_security_group_ids = [module.security_group.security_group_id]
   subnet_id              = "subnet-07e2128167d8cbd9d"
   associate_public_ip_address = true
-   enable_volume_tags = false
-  root_block_device = [
-    {
-    volume_size = 10
-    volume_type = "gp3"
-    encrypted   = false
-    throughput  = 100
-    tags = {
-        Name = "root-block"
-      }
-    },
-  ]
-  ebs_block_device = [
-    {
-      device_name = "/dev/sdf"
-      volume_type = "gp3"
-      volume_size = 2
-      throughput  = 100
-      encrypted   = false
-    },
-    {
-      device_name = "/dev/sdg"
-      volume_type = "gp3"
-      volume_size = 1
-      throughput  = 100
-      encrypted   = false
-    }
-  ]
+}
+
+resource "aws_volume_attachment" "this" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.this.id
+  instance_id = module.ec2_instance.id
+}
+resource "aws_ebs_volume" "this" {
+  availability_zone =  "eu-central-1a"
+  size = 2
+}
+resource "aws_volume_attachment" "thiss" {
+  device_name = "/dev/sdg"
+  volume_id   = aws_ebs_volume.thiss.id
+  instance_id = module.ec2_instance.id
+}
+resource "aws_ebs_volume" "thiss" {
+  availability_zone =  "eu-central-1a"
+  size = 3
 }
 
 module "security_group" {
