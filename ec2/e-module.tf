@@ -11,7 +11,7 @@ module "ec2_instance" {
   vpc_security_group_ids = [module.security_group.security_group_id]
   subnet_id              = "subnet-07e2128167d8cbd9d"
   associate_public_ip_address = true
-  
+   enable_volume_tags = false
   root_block_device = [
     {
     volume_size = 10
