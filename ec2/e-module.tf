@@ -12,12 +12,18 @@ module "ec2_instance" {
   subnet_id              = "subnet-07e2128167d8cbd9d"
   associate_public_ip_address = true
   
-}
-
-root_block_device {
+  root_block_device = [
+    {
     volume_size = 10
     volume_type = "gp3"
-    }
+    encrypted   = false
+    throughput  = 100
+    tags = {
+        Name = "root-block"
+      }
+    },
+  ]
+}
 
   resource "aws_volume_attachment" "this" {
   device_name = "/dev/sdh"
