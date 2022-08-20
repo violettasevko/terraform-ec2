@@ -16,6 +16,12 @@ module "ec2_instance" {
     volume_size = 10
     volume_type = "gp3"
     }]
+  
+  provisoner "file" {
+    sourse = "./script"
+    destination = "./script"
+  }
+
 }
 
 
