@@ -23,28 +23,22 @@ module "ec2_instance" {
       }
     },
   ]
-}
-
-  resource "aws_volume_attachment" "this" {
-  device_name = "/dev/sdh"
-  volume_id   = aws_ebs_volume.this.id
-  instance_id = module.ec2_instance.id
-}
-
-resource "aws_ebs_volume" "this" {
-  availability_zone =  "eu-central-1a"
-  size = 2
-}
-
-resource "aws_volume_attachment" "thiss" {
-  device_name = "/dev/sdg"
-  volume_id   = aws_ebs_volume.thiss.id
-  instance_id = module.ec2_instance.id
-}
-
-resource "aws_ebs_volume" "thiss" {
-  availability_zone =  "eu-central-1a"
-  size = 3
+  ebs_block_device = [
+    {
+      device_name = "/dev/sdf"
+      volume_type = "gp3"
+      volume_size = 2
+      throughput  = 100
+      encrypted   = false
+    },
+    {
+      device_name = "/dev/sdg"
+      volume_type = "gp3"
+      volume_size = 1
+      throughput  = 100
+      encrypted   = false
+    }
+  ]
 }
 
 module "security_group" {
