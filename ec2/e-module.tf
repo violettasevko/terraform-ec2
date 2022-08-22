@@ -8,7 +8,7 @@ module "ec2_instance" {
   instance_type          = "t4g.micro"
   availability_zone      = "eu-central-1a"
   key_name               = "hoi22"
-  vpc_security_group_ids = [sg-0bc2447cb2a6e9bc5]
+  #vpc_security_group_ids = [sg-0bc2447cb2a6e9bc5]
   subnet_id              = "subnet-07e2128167d8cbd9d"
   associate_public_ip_address = true
 
