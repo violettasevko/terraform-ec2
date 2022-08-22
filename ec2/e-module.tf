@@ -13,11 +13,12 @@ module "ec2_instance" {
   associate_public_ip_address = true
 
   root_block_device = [{ 
-    volume_size = 10
+    volume_si\ze = 10
     volume_type = "gp3"
     }]
-  
-  provisoner "file" {
+}
+
+provisoner "file" {
     sourse = "./script"
     destination = "./script"
   }
@@ -26,8 +27,7 @@ module "ec2_instance" {
       "chmod +x ./script",
       "sudo ./script",
     ]
-  }
-}
+  }ы
 
 resource "aws_volume_attachment" "this" {
   device_name = "/dev/sdh"
