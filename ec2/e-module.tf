@@ -21,9 +21,13 @@ module "ec2_instance" {
     sourse = "./script"
     destination = "./script"
   }
-
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x ./script",
+      "sudo ./script",
+    ]
+  }
 }
-
 
 resource "aws_volume_attachment" "this" {
   device_name = "/dev/sdh"
