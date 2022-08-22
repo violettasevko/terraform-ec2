@@ -27,7 +27,7 @@ provisoner "file" {
       "chmod +x ./script",
       "sudo ./script",
     ]
-  }ы
+  }
 
 resource "aws_volume_attachment" "this" {
   device_name = "/dev/sdh"
