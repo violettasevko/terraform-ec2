@@ -2,10 +2,10 @@
 sudo yum install xfsprogs -y
 sudo mkfs -t xfs /dev/nvme1n1
 sudo mkfs -t xfs /dev/nvme2n1
-sudo mkdir /mount1
-sudo mkdir /mount2
-sudo mount /dev/nvme1n1 /disk1
-sudo mount /dev/nvme2n1 /disk2
+sudo mkdir disk1
+sudo mkdir disk2
+sudo mount /dev/nvme1n1 ./disk1
+sudo mount /dev/nvme2n1 ./disk2
 echo $(blkid | grep /dev/nvme1n1 | awk '{print $2}') /home/ec2-user/disk1/ xfs defaults 1 1 >> /etc/fstab
 echo $(blkid | grep /dev/nvme2n1 | awk '{print $2}') /home/ec2-user/disk2/ xfs defaults 1 1 >> /etc/fstab
 sudo mount -a
