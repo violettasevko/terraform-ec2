@@ -11,6 +11,7 @@ module "ec2_instance" {
   #vpc_security_group_ids = [sg-0bc2447cb2a6e9bc5]
   subnet_id              = "subnet-07e2128167d8cbd9d"
   associate_public_ip_address = true
+  user_data = file("script")
 
   root_block_device = [{ 
     volume_size = 10
