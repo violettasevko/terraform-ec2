@@ -1,4 +1,4 @@
-#!/bin/bash/
+#! /bin/bash
 sudo yum install xfsprogs -y
 sudo mkfs -t xfs /dev/nvme1n1
 sudo mkfs -t xfs /dev/nvme2n1
