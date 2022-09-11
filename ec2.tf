@@ -7,7 +7,7 @@ resource "aws_instance" "myinstance" {
   instance_type = var.instance_type
   #key_name = var.web_key_name
   tags = {
-        Name = "vioinstance"
+        Name = "myinstance"
         owner = "violetta"        
     }
 }
