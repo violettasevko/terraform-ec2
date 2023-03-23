@@ -2,7 +2,7 @@ module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 3.0"
 
-  name = "task-1"
+  name = "task-1-vio"
 
   #ami arm amilinux
   ami                    = "ami-05fab674de2157a80"
