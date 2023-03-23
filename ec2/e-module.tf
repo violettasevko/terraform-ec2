@@ -10,7 +10,7 @@ module "ec2_instance" {
   availability_zone      = "us-east-1a"
   key_name               = "l1q_key"
   vpc_security_group_ids = ["sg-008d650fa174f6032"]
-  subnet_id              = "subnet-008f1a536a8623779"
+  subnet_id              = "subnet-093c431d9db5d8562"
   associate_public_ip_address = true
   user_data = file("script")
 
