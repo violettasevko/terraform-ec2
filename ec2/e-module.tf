@@ -4,12 +4,13 @@ module "ec2_instance" {
 
   name = "task-1"
 
-  ami                    = "ami-0c0fcae772c706bbe"
+  #ami arm amilinux
+  ami                    = "ami-05fab674de2157a80"
   instance_type          = "t4g.micro"
-  availability_zone      = "eu-central-1a"
-  key_name               = "hoi22"
-  vpc_security_group_ids = ["sg-019219fc96bf5722b"]
-  subnet_id              = "subnet-0dc70de3a44db5b70"
+  availability_zone      = "us-east-1a"
+  key_name               = "l1q_key"
+  vpc_security_group_ids = ["sg-008d650fa174f6032"]
+  subnet_id              = "subnet-008f1a536a8623779"
   associate_public_ip_address = true
   user_data = file("script")
 
@@ -25,7 +26,7 @@ resource "aws_volume_attachment" "this" {
   instance_id = module.ec2_instance.id
 }
 resource "aws_ebs_volume" "this" {
-  availability_zone =  "eu-central-1a"
+  availability_zone =  "us-east-1a"
   size = 2
 }
 resource "aws_volume_attachment" "thiss" {
@@ -34,6 +35,6 @@ resource "aws_volume_attachment" "thiss" {
   instance_id = module.ec2_instance.id
 }
 resource "aws_ebs_volume" "thiss" {
-  availability_zone =  "eu-central-1a"
+  availability_zone =  "us-east-1a"
   size = 3
 }
