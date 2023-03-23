@@ -9,3 +9,6 @@ wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
 sudo rpm -Uvh mysql80-community-release-el9-1.noarch.rpm
 sudo yum install mysql-community-{server,client,client-plugins,icu-data-files,common,libs}-* -y
 systemctl start mysqld
+sudo yum install nginx
+systemctl start nginx
+sudo chkconfig nginx on
