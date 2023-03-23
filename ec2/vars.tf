@@ -1,9 +1,9 @@
 variable "AWS_Region" {
-    default = "eu-central-1"
+    default = "us-east-1"
 }
 
 variable "ami_id" {
-  default = "ami-0ceb85bb30095410b"
+  default = "ami-05fab674de2157a80"
 }
 
 variable "instance_type" {
