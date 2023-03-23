@@ -5,3 +5,7 @@ sudo mkdir mysql-server
 sudo mount /dev/nvme1n1 ./mysql-server
 echo $(blkid | grep /dev/nvme1n1 | awk '{print $2}') /home/ec2-user/mysql-server/ xfs defaults 1 1 >> /etc/fstab
 sudo mount -a
+wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+sudo rpm -Uvh mysql80-community-release-el9-1.noarch.rpm
+sudo yum install mysql-community-{server,client,client-plugins,icu-data-files,common,libs}-*
+systemctl start mysqld
