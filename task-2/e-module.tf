@@ -4,9 +4,9 @@ module "ec2_instance" {
 
   name = "task-2-vio"
 
-  #ami arm amilinux
-  ami                    = "ami-05fab674de2157a80"
-  instance_type          = "t4g.micro"
+  #ami x86 amilinux
+  ami                    = "ami-02f3f602d23f1659d"
+  instance_type          = "t3.small"
   availability_zone      = "us-east-1a"
   key_name               = "l1q_key"
   vpc_security_group_ids = ["sg-008d650fa174f6032"]

@@ -3,11 +3,11 @@ variable "AWS_Region" {
 }
 
 variable "ami_id" {
-  default = "ami-05fab674de2157a80"
+  default = "ami-02f3f602d23f1659d"
 }
 
 variable "instance_type" {
-  default = "t4g.micro"
+  default = "t3.small"
 }
 
 #variable "web_key_name" {
