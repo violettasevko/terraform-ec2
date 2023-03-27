@@ -1,17 +1,17 @@
 #! /bin/bash
-sudo -u ec2-user bash -c "yum install xfsprogs -y"
-sudo -u ec2-user bash -c "mkfs -t xfs /dev/nvme1n1"
-sudo -u ec2-user bash -c "mkdir mysql-server"
-sudo -u ec2-user bash -c "mount /dev/nvme1n1 ./mysql-server"
-sudo -u ec2-user echo $(blkid | grep /dev/nvme1n1 | awk '{print $2}') /home/ec2-user/mysql-server/ xfs defaults 1 1 >> /etc/fstab
-sudo -u ec2-user bash -c "mount -a"
+sudo yum install xfsprogs -y
+sudo mkfs -t xfs /dev/nvme1n1
+sudo -u ec2-user mkdir mysql-server
+sudo mount /dev/nvme1n1 ./mysql-server
+sudo echo $(blkid | grep /dev/nvme1n1 | awk '{print $2}') /home/ec2-user/mysql-server/ xfs defaults 1 1 >> /etc/fstab
+sudo mount -a
 sudo -u ec2-user wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
-sudo -u ec2-user bash -c "rpm -Uvh mysql80-community-release-el9-1.noarch.rpm"
-sudo -u ec2-user bash -c "yum install mysql-community-{server,client,client-plugins,icu-data-files,common,libs}-* -y"
+sudo rpm -Uvh mysql80-community-release-el9-1.noarch.rpm
+sudo yum install mysql-community-{server,client,client-plugins,icu-data-files,common,libs}-* -y
 sudo -u ec2-user systemctl start mysqld
-sudo -u ec2-user bash -c "yum install nginx"
+sudo yum install nginx
 sudo -u ec2-user systemctl start nginx
-sudo -u ec2-user bash -c "chkconfig nginx on"
-sudo -u ec2-user bash -c "aws s3 cp s3://viobuck/nginx.conf /etc/nginx/nginx.conf"
-sudo -u ec2-user bash -c "aws s3 cp s3://viobuck/addrecord.json ."
-sudo -u ec2-user bash -c "aws route53 change-resource-record-sets --hosted-zone-id $"aws route53 list-hosted-zones-by-name --dns-name qkdev.net --query \"HostedZones[0].Id\" --output text | sed 's/\/hostedzone\///'" --change-batch file://addrecord.json"
+sudo chkconfig nginx on
+sudo aws s3 cp s3://viobuck/nginx.conf /etc/nginx/nginx.conf
+sudo aws s3 cp s3://viobuck/addrecord.json .
+sudo aws route53 change-resource-record-sets --hosted-zone-id $"aws route53 list-hosted-zones-by-name --dns-name qkdev.net --query \"HostedZones[0].Id\" --output text | sed 's/\/hostedzone\///'" --change-batch file://addrecord.json
