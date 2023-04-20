@@ -13,5 +13,3 @@ sudo yum install nginx
 sudo -u ec2-user systemctl start nginx
 sudo chkconfig nginx on
 sudo aws s3 cp s3://viobuck/nginx.conf /etc/nginx/nginx.conf
-sudo aws s3 cp s3://viobuck/addrecord.json .
-sudo aws route53 change-resource-record-sets --hosted-zone-id $"aws route53 list-hosted-zones-by-name --dns-name qkdev.net --query \"HostedZones[0].Id\" --output text | sed 's/\/hostedzone\///'" --change-batch file://addrecord.json
