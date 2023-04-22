@@ -9,7 +9,7 @@ sudo -u ec2-user mkdir mysql-server
 sudo mount /dev/nvme1n1 /home/ec2-user/mysql-server
 sudo mount /dev/nvme2n1 /var/www
 sudo echo $(blkid | grep /dev/nvme1n1 | awk '{print $2}') /home/ec2-user/mysql-server/ xfs defaults 1 1 >> /etc/fstab
-sudo echo $(blkid | grep /dev/nvme1n1 | awk '{print $2}') /var/www xfs defaults 1 1 >> /etc/fstab
+sudo echo $(blkid | grep /dev/nvme2n1 | awk '{print $2}') /var/www xfs defaults 1 1 >> /etc/fstab
 sudo mount -a
 cd mysql-server
 sudo -u ec2-user wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
@@ -30,4 +30,4 @@ sudo aws s3 cp s3://viobuck/nginx.conf /etc/nginx/nginx.conf
 cd /var/www
 sudo -u ec2-user wget https://wordpress.org/latest.tar.gz
 sudo -u ec2-user tar -xzf latest.tar.gz
-cp wordpress/wp-config-sample.php wordpress/wp-config.php
+sudo aws s3 cp s3://viobuck/wp-config.php /var/www/wordpress/wp-config.php
