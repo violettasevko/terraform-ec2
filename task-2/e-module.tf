@@ -29,3 +29,13 @@ resource "aws_ebs_volume" "this" {
   availability_zone =  "us-east-1a"
   size = 5
 }
+
+resource "aws_volume_attachment" "thiss" {
+  device_name = "/dev/sdg"
+  volume_id   = aws_ebs_volume.thiss.id
+  instance_id = module.ec2_instance.id
+}
+resource "aws_ebs_volume" "thiss" {
+  availability_zone =  "us-east-1a"
+  size = 5
+}
