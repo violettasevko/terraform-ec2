@@ -28,6 +28,6 @@ sudo chkconfig nginx on
 cd ..
 sudo aws s3 cp s3://viobuck/nginx.conf /etc/nginx/nginx.conf
 cd /var/www
-sudo -u ec2-user wget https://wordpress.org/latest.tar.gz
-sudo -u ec2-user tar -xzf latest.tar.gz
+sudo wget https://wordpress.org/latest.tar.gz
+sudo tar -xzf latest.tar.gz
 sudo aws s3 cp s3://viobuck/wp-config.php /var/www/wordpress/wp-config.php
