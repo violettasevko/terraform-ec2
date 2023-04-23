@@ -3,7 +3,7 @@ sudo yum install xfsprogs -y
 sudo mkfs -t xfs /dev/nvme1n1
 sudo mkfs -t xfs /dev/nvme2n1
 cd /var
-sudo -u ec2-user mkdir www
+sudo mkdir www
 cd /home/ec2-user/
 sudo -u ec2-user mkdir mysql-server
 sudo mount /dev/nvme1n1 /home/ec2-user/mysql-server
