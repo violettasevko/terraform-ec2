@@ -22,7 +22,7 @@ sudo mysql -e "GRANT ALL PRIVILEGES ON `wordpress-db`.* TO \"wordpress-user\"@\"
 sudo mysql -e "FLUSH PRIVILEGES;"
 sudo -u ec2-user systemctl stop mysqld
 sudo -u ec2-user systemctl start mysqld
-sudo yum install nginx
+sudo yum install nginx -y
 sudo -u ec2-user systemctl start nginx
 sudo chkconfig nginx on
 cd ..
