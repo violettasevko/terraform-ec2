@@ -15,15 +15,15 @@ cd mysql-server
 sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
 sudo rpm -Uvh mysql80-community-release-el9-1.noarch.rpm
 sudo yum install mysql-community-{server,client,client-plugins,icu-data-files,common,libs}-* -y
-sudo -u ec2-user systemctl start mysqld
+sudo systemctl start mysqld
 sudo mysql -e "CREATE USER 'wordpress-user'@'localhost' IDENTIFIED BY 'Mysql123$';"
 sudo mysql -e "CREATE DATABASE `wordpress-db`;"
 sudo mysql -e "GRANT ALL PRIVILEGES ON `wordpress-db`.* TO \"wordpress-user\"@\"localhost\";"
 sudo mysql -e "FLUSH PRIVILEGES;"
-sudo -u ec2-user systemctl stop mysqld
-sudo -u ec2-user systemctl start mysqld
+sudo systemctl stop mysqld
+sudo systemctl start mysqld
 sudo yum install nginx -y
-sudo -u ec2-user systemctl start nginx
+sudo systemctl start nginx
 sudo chkconfig nginx on
 cd ..
 sudo aws s3 cp s3://viobuck/nginx.conf /etc/nginx/nginx.conf
